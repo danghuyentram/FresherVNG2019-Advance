@@ -1,8 +1,8 @@
 package com.example.demostartertemplate;
 
+import com.example.helloservicebootstarter.service.HelloService;
 import com.example.demostartertemplate.models.Student;
 import com.example.demostartertemplate.service.CustomHelloService;
-import com.example.helloservicebootstarter.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+
 
 @SpringBootApplication
 @EnableConfigurationProperties
@@ -23,6 +24,8 @@ public class DemoStarterTemplateApplication implements CommandLineRunner {
 
 	@Value("${person.name}")
 	private String name;
+
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoStarterTemplateApplication.class, args);
@@ -43,9 +46,10 @@ public class DemoStarterTemplateApplication implements CommandLineRunner {
 
 	}
 
-	@Bean
-	public HelloService helloService(){
-		return new CustomHelloService();
-	}
+//	@Bean
+//	public HelloService helloService(){
+////		return new HelloServiceImpl();
+//		return new CustomHelloService();
+//	}
 
 }

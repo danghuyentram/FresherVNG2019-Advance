@@ -29,12 +29,23 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>hello-service-boot-starter</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-	</dependencies>
+<!--        <dependency>-->
+<!--        			<groupId>com.example</groupId>-->
+<!--        			<artifactId>demo-hello-service-boot-starter</artifactId>-->
+<!--        			<version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

@@ -1,5 +1,6 @@
 package com.example.demostartertemplate;
 
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("dev")
-public class TestDevEnv {
+@ActiveProfiles("prod")
+public class TestProdEnv {
     @Value("${person.name}")
     private String name;
 
@@ -28,6 +29,6 @@ public class TestDevEnv {
         // WHEN
 
         // THEN
-        Assert.assertEquals("development",getName());
+        Assert.assertEquals("product",getName());
     }
 }

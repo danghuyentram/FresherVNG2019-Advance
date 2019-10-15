@@ -44,7 +44,6 @@ public class TestRollBack {
             con.commit();
         } catch (SQLException exc) {
             exc.printStackTrace();
-            System.out.println("rollback");
             con.rollback();
         } finally {
             con.setAutoCommit(autoCommit);

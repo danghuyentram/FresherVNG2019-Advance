@@ -20,50 +20,15 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("prod")
-
 public class DemoStarterTemplateApplicationTests {
 
 	@Autowired
 	ApplicationContext ctx;
 
 
-	@Value("${person.name}")
-	private String name;
-
-	@Autowired
-	private ConfigurableEnvironment env;
-
-//	@Test
-//	public void checkExistDispatcherServlet(){
-////		ApplicationContext ctx = SpringApplication.run(CustomAppApplication.class);
-//		assertNotNull(ctx.getBean("dispatcherServlet"));
-//	}
-
-//	@Test
-//	public void checkDevEnv(){
-//		env.setActiveProfiles("dev");
-//		Assert.assertEquals(name,"development");
-//
-//	}
-
-	@Bean
-	public String getName(){
-		return name;
-
-	}
-
-
 	@Test
-	public void checkProdEnv(){
-
-		Assert.assertEquals("product",getName());
-
+	public void checkExistDispatcherServlet(){
+		assertNotNull(ctx.getBean("dispatcherServlet"));
 	}
-
-
-
-
-
 
 }
