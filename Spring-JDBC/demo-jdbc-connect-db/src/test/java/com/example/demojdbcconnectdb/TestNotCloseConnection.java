@@ -24,13 +24,10 @@ public class TestNotCloseConnection {
 
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager
-				.getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
-
+		Connection con = null ;
 
 		// WHEN
 		try{
-			con = null;
 			con = DriverManager
 					.getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
 

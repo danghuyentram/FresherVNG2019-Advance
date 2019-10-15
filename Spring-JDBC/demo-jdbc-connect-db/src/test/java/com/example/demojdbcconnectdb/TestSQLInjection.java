@@ -30,17 +30,23 @@ public class TestSQLInjection {
     public void checkSQLInjectionWithStatement() throws ClassNotFoundException, SQLException {
         // GIVEN
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
+        Integer row = 0;
+        try( Connection con = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");){
+            // WHEN
+            try(Statement stmt = con.createStatement();){
+                String querySql = getQueryString("'jb' or 1=1");
+                ResultSet resultSet = stmt.executeQuery(querySql);
+                row = getNumberRowOfResultSet(resultSet);
 
-        Statement stmt = con.createStatement();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
 
-        // WHEN
-        String querySql = getQueryString("'jb' or 1=1");
-        ResultSet resultSet = stmt.executeQuery(querySql);
-        Integer row = getNumberRowOfResultSet(resultSet);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
-        con.close();
 
         // THEN
         Assert.assertTrue(row>1);
@@ -50,16 +56,22 @@ public class TestSQLInjection {
     public void checkSQLInjectionWithPrepareStatementNoneArgument() throws ClassNotFoundException, SQLException {
         // GIVEN
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
+        Integer row = 0;
+        try(Connection con = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");){
 
+            // WHEN
+            String querySql = getQueryString("'jb' or 1=1");
+            try(PreparedStatement preparedStatement = con.prepareStatement(querySql);){
+                ResultSet resultSet = preparedStatement.executeQuery();
+                row = getNumberRowOfResultSet(resultSet);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
-        // WHEN
-        String querySql = getQueryString("'jb' or 1=1");
-        PreparedStatement preparedStatement = con.prepareStatement(querySql);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        Integer row = getNumberRowOfResultSet(resultSet);
-        con.close();
 
         // THEN
         Assert.assertTrue(row>1);
@@ -69,29 +81,25 @@ public class TestSQLInjection {
     public void checkSQLInjectionWithPrepareStatementWithArgument() throws ClassNotFoundException, SQLException {
         // GIVEN
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
-
         Integer row=0;
 
-        // WHEN
-        try{
-            String querySql = getQueryString("?");
-            PreparedStatement preparedStatement = con.prepareStatement(querySql);
-            preparedStatement.setString(1,"jb");
-            ResultSet resultSet =preparedStatement.executeQuery();
-            row = getNumberRowOfResultSet(resultSet);
+        try(Connection con = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
+        ){
 
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        finally {
-            try {
-                con.close();
-            } catch (Exception e) {
+            // WHEN
+            String querySql = getQueryString("?");
+            try(PreparedStatement preparedStatement = con.prepareStatement(querySql);
+            ){
+                preparedStatement.setString(1,"jb");
+                ResultSet resultSet =preparedStatement.executeQuery();
+                row = getNumberRowOfResultSet(resultSet);
+            }catch (SQLException e){
                 e.printStackTrace();
             }
+
+        }catch (SQLException e){
+            e.printStackTrace();
         }
 
         // THEN

@@ -20,6 +20,8 @@ public class TestRollBack {
         Connection con = DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
 
+
+
         String updatePositionSql = "UPDATE employees SET position=? WHERE emp_id=?";
         PreparedStatement pstmt = con.prepareStatement(updatePositionSql);
         pstmt.setString(1, "lead developer update");
@@ -35,7 +37,7 @@ public class TestRollBack {
         // WHEN
 
         boolean autoCommit = con.getAutoCommit();
-        String position = "lead developer";
+        String oldPosition = "lead developer";
         try {
             con.setAutoCommit(false);
             pstmt2.executeUpdate();
@@ -56,21 +58,28 @@ public class TestRollBack {
             if(resultSet.next())
                 updatePosition = resultSet.getString("position");
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally
         {
-            try {
-                con.close();
-            } catch (Exception e) {
+            try{
+                if(pstmt!=null)
+                    pstmt.close();
+                if(pstmt2!=null)
+                    pstmt2.close();
+            }catch (Exception e){
                 e.printStackTrace();
+            }
+
+            try {
+                    con.close();
+            } catch (Exception e) {
+                    e.printStackTrace();
             }
         }
 
 
-
-
         // THEN
-        Assert.assertEquals(updatePosition,position);
+        Assert.assertEquals(updatePosition,oldPosition);
 
 
     }

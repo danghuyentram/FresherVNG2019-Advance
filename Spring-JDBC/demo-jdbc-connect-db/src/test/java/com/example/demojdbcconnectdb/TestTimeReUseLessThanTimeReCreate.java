@@ -19,25 +19,29 @@ public class TestTimeReUseLessThanTimeReCreate {
         long startTime = System.nanoTime();
 
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
 
-        String querySql ="select * from employees where emp_id=1";
-        Statement statement = con.createStatement();
-        statement.execute(querySql);
+        try(Connection con = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");){
 
-        querySql ="select * from employees where emp_id=2";
-        statement = con.createStatement();
-        statement.execute(querySql);
+            String querySql ="select * from employees where emp_id=1";
+            try(Statement statement = con.createStatement();){
+                statement.execute(querySql);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
 
+            querySql ="select * from employees where emp_id=2";
+            try(Statement statement = con.createStatement();){
+                statement.execute(querySql);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
 
-        long endTime = System.nanoTime();
-        try {
-            con.close();
-        } catch (Exception e) {
+        }catch (SQLException e){
             e.printStackTrace();
         }
 
+        long endTime = System.nanoTime();
         return  (endTime - startTime);
     }
 
@@ -45,32 +49,36 @@ public class TestTimeReUseLessThanTimeReCreate {
         long startTime = System.nanoTime();
 
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
+        try(Connection con = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");){
 
-        String querySql ="select * from employees where emp_id=1";
-        Statement statement = con.createStatement();
-        statement.execute(querySql);
+            String querySql ="select * from employees where emp_id=1";
+            try(Statement statement = con.createStatement();){
+                statement.execute(querySql);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
 
-        con.close();
+        }catch (SQLException e){
+            e.printStackTrace();
 
+        }
 
-        con = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");
+        try(Connection con = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/myDB", "user1", "password");){
 
-        querySql ="select * from employees where emp_id=2";
-        statement = con.createStatement();
-        statement.execute(querySql);
+            String querySql ="select * from employees where emp_id=2";
+            try(Statement statement = con.createStatement();){
+                statement.execute(querySql);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
 
-        long endTime = System.nanoTime();
-
-        try {
-                con.close();
-            } catch (Exception e) {
+        }catch (SQLException e){
             e.printStackTrace();
         }
 
-
+        long endTime = System.nanoTime();
         return  (endTime - startTime);
     }
 
