@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="Employee_JPA">
+        <description>JPA Test</description>
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+<!--        <class>com.example.demojpa.entity.Employee</class>-->
+<!--        <class>com.example.demojpa.entity.Department</class>-->
+
+<!--        <class>com.example.demojpa.entity.Staff</class>-->
+<!--        <class>com.example.demojpa.entity.NonTeachingStaff</class>-->
+<!--        <class>com.example.demojpa.entity.TeachingStaff</class>-->
+
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/jpadb"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="password"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.show_sql" value="true" />
+
+        </properties>
+    </persistence-unit>
+</persistence>

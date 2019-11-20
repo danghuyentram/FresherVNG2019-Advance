@@ -1,8 +1,6 @@
 package com.example.helloservicebootstarter;
 
-import com.example.helloservicebootstarter.service.HelloService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
