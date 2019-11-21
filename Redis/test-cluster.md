@@ -1,4 +1,23 @@
 # Test cluster down
+# 0. Prepare for test
+Có thể config các cluster theo 2 cách:
+- Tạo các file config cho mỗi node master slave
+- Dùng create-cluster script
+
+https://redis.io/topics/cluster-tutorial
+
+Ở đây mình dùng create-cluster script.
+
+Để shutdown 1 node
+```
+redis-cli -p [portnumber] shutdown
+```
+
+- Chạy app demo-redis-counter, mình để source ở trên. Dùng postman call api
+```
+http://localhost:8080/test
+```
+Để xem biến counter mỗi lần trả về
 
 # 1. Test down tất cả slave
 | Port   |       |       |       |

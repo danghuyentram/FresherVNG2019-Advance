@@ -72,13 +72,13 @@ public class CounterService {
     }
 
 
-    public  long test(){
+    public  long testDownCluster(){
         Config config = new Config();
         config.useClusterServers()
 //                .setAddress("localhost:30002");
                 .addNodeAddress("localhost:12001" ,"localhost:12002")
                 .addNodeAddress("localhost:12003", "localhost:12004")
-                .addNodeAddress("localhost:12005", "localhost:12006","localhost:12007");
+                .addNodeAddress("localhost:12005", "localhost:12006");
         RedissonClient redissonClient1 = Redisson.create(config);
 
 //        RBucket<String> bucket = redissonClient1.getBucket("stringObject");

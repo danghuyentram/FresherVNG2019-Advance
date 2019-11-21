@@ -39,7 +39,7 @@ public class CounterController {
     @RequestMapping("/test")
     public @ResponseBody ResponseEntity testCluster(){
 
-        return ResponseEntity.accepted().body(counterService.test());
+        return ResponseEntity.accepted().body(counterService.testDownCluster());
     }
 
 
