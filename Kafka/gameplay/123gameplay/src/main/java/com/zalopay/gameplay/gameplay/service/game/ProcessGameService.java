@@ -1,4 +1,4 @@
-package com.zalopay.gameplay.gameplay.service;
+package com.zalopay.gameplay.gameplay.service.game;
 
 
 import org.springframework.stereotype.Service;
@@ -9,20 +9,17 @@ import java.util.Random;
 public class ProcessGameService {
     public static final int MAX = 2;
     public static final int MIN = 0;
-    public static final int SCISSORS = 0;
     public static final int ROCK = 0;
-    public static final int PAPER = 0;
+    public static final int PAPER = 1;
+    public static final int SCISSORS = 2;
     public static final int WIN = 0;
     public static final int LOSE = 1;
     public static final int DRAW = 2;
-
-
+    private final Random botStep = new Random();
 
 
     public int getBotStep(){
-        Random botStep = new Random();
-        return botStep.nextInt((MAX - MIN) + 1) + MAX;
-
+        return botStep.nextInt(3);
     }
 
 

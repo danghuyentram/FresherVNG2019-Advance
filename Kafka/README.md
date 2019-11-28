@@ -198,8 +198,28 @@ https://docs.spring.io/spring-kafka/api/org/springframework/kafka/annotation/Ena
 
 @EnableKafka enable detection @KafkaListener annotation trong bất kì bean nào trong container mà Spring quản lý, dùng cho spring-core, còn spring-boot có org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration nên không cần annotation này.
 
-# 6. Kafka in distributed system
+# 6 Microservice
+## 6.1 Đặc điểm
+- Decoupling – Các service trong một hệ thống phần lớn được tách rời. Vì vậy, toàn bộ ứng dụng có thể dễ dàng được xây dựng, thay đổi và thu nhỏ.
+- Componentization – Microservices được coi là các thành phần độc lập có thể dễ dàng thay thế và nâng cấp.
+- Business Capabilities – mỗi một thành phần trong kiến trúc microservice rất đơn giản và tập trung vào một nhiệm vụ duy nhất.
+- Autonomy – các lập trình viên hay các nhóm có thể làm việc độc lập với nhau trong quá trình phát triển.
+- Continous Delivery – Cho phép phát hành phần mềm thường xuyên, liên tục.
+Responsibility .
+- Decentralized Governance – không có mẫu chuẩn hóa hoặc bất kỳ mẫu công nghệ nào. Được tự do lựa chọn các công cụ hữu ích tốt nhất để có thể giải quyết vấn đề.
+- Agility – microservice hỗ trợ phát triển theo mô hình Agile.
 
+## 6.2 Ưu điểm
+- Mỗi microservice được chia nhỏ để tập trung vào 1 business function cụ thể hoặc 1 business requirement
+- Microservice có thể được phát triển độc lập bởi 1 team nhỏ
+- Microservice có tính loose-coupling, mỗi service là độc lập với nhau
+- Microservice có thể phát triển với nhiều ngôn ngữ khác nhau
+- 1 new member có thể join vào project dễ dàng
+- Microservice chỉ gồm business logic không bao gồm HTML, CSS
+- Dễ dàng tích hợp 3rd-party
+- Mỗi service có thể có db riêng
 
-
-
+## 6.3 Khuyết điểm
+- Microservice có thể dẫn được với có quá nhiều operation
+- Việc quản lý distributed system thì phức tạp
+- Số lượng service càng lớn thì vấn đề về quản lí cũng phức tạp hơn
