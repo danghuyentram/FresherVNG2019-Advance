@@ -223,3 +223,5 @@ Responsibility .
 - Microservice có thể dẫn được với có quá nhiều operation
 - Việc quản lý distributed system thì phức tạp
 - Số lượng service càng lớn thì vấn đề về quản lí cũng phức tạp hơn
+
+

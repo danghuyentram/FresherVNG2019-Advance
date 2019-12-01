@@ -40,3 +40,5 @@ enable.auto.commit: false
 
 Sau đo ta có thể commit offset thủ công ngay sau kho process xong nó và khi consumer bị crash thì nó vẫn có thể fetch được message mong muốn.
 
+Reference:
+https://medium.com/@danieljameskay/understanding-the-enable-auto-commit-kafka-consumer-property-12fa0ade7b65
