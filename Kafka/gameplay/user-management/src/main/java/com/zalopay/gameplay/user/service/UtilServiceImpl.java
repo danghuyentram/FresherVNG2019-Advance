@@ -15,4 +15,9 @@ public class UtilServiceImpl implements UtilService {
     public RandomUsername findById(long id) {
         return randomUsernameRepository.findById(id);
     }
+
+    @Override
+    public long countAllRandomName() {
+        return randomUsernameRepository.count();
+    }
 }

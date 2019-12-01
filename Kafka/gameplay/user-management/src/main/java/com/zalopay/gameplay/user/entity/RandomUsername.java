@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "temp")
+@Table(name = "random_name")
 @Getter
 @Setter
 @AllArgsConstructor

@@ -1,6 +1,9 @@
 package com.zalopay.gameplay.user.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -11,17 +14,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserGame {
-    @EmbeddedId
-    private UserGameId id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("user_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("game_id")
-    private Game game;
-
-    private int result;
-
+    private String gameType;
+    private long totalGame;
 }

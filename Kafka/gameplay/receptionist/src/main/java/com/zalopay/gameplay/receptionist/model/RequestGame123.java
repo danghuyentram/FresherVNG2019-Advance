@@ -1,5 +1,6 @@
 package com.zalopay.gameplay.receptionist.model;
 
+import com.zalopay.gameplay.receptionist.constant.UserStep;
 import lombok.*;
 
 @AllArgsConstructor
@@ -9,6 +10,5 @@ import lombok.*;
 @ToString
 public class RequestGame123 {
     String userName;
-    String gameType;
-    Integer userStep;
+    UserStep userStep;
 }

@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class ProducerGame123Config {
+public class ProducerGameConfig {
 
     @Autowired
     KafkaProperties kafkaProperties;

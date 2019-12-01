@@ -19,11 +19,7 @@ public class ConsumerService {
     private final Logger logger = LoggerFactory.getLogger(ProducerService.class);
 
 
-//    @KafkaListener(topics = "test", groupId = "consumerGroup1")
-//    public void consume1(String message){
-//        logger.info(String.format("#### -> Consumed message of %s-> %s","consumer1",message));
-//    }
-//
+
     @KafkaListener(topics = "demo", groupId = "consumerGroup2")
     public void consume2(String message) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();

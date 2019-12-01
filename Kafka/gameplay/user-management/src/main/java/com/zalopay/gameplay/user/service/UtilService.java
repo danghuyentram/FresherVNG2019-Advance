@@ -4,4 +4,5 @@ import com.zalopay.gameplay.user.entity.RandomUsername;
 
 public interface UtilService {
     RandomUsername findById(long id);
+    long countAllRandomName();
 }

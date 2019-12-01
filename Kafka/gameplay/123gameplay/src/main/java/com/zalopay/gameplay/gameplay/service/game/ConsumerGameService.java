@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @Service
 public class ConsumerGameService {
-//    private final Logger logger = LoggerFactory.getLogger(ProducerGameService.class);
+    private final Logger logger = LoggerFactory.getLogger(ConsumerGameService.class);
 
     @Autowired
     ProcessGameService processGameService;
@@ -37,7 +37,7 @@ public class ConsumerGameService {
         gamePlay.setBotStep(processGameService.getBotStep());
         gamePlay.setResult(processGameService.getResultGame(gamePlay.getUserStep(),gamePlay.getBotStep()));
 
-//        logger.info(String.format("#### -> Consumed message of gameplay -> %s",gamePlay.toString()));
+        logger.info(String.format("#### -> Consumed message of gameplay -> %s",message.toString()));
 
 
         // produce to userManager topic

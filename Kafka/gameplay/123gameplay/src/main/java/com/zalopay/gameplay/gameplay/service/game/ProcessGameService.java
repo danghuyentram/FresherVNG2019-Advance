@@ -24,32 +24,32 @@ public class ProcessGameService {
 
 
     public int getResultGame(int userStep, int botStep){
-        if(userStep == botStep)
-            return DRAW;
-        else if(userStep == SCISSORS)
-            // userStep = SCISSORS
-                    if(botStep == ROCK)
-                        // botStep = ROCK
-                        return LOSE;
-                    else
-                        // botStep = PAPER
-                        return WIN;
-        else if(userStep == ROCK)
-            // userStep = ROCK
-                    if(botStep == PAPER)
-                        // botStep = PAPER
-                        return LOSE;
-                    else
-                        // botStep = SCISSORS
-                        return WIN;
-        else
-            // userStep = PAPER
-            if(botStep == SCISSORS)
-                // botStep = SCISSORS
-                return LOSE;
-            else
-                // botStep = ROCK
-                return WIN;
+        switch (userStep){
+            case ROCK:
+                switch (botStep){
+                    case SCISSORS: return WIN;
+                    case ROCK: return DRAW;
+                    case PAPER: return LOSE;
+                }
+
+            case PAPER:
+                switch (botStep){
+                    case ROCK: return WIN;
+                    case PAPER: return DRAW;
+                    case SCISSORS: return LOSE;
+                }
+
+            case SCISSORS:
+                switch (botStep){
+                    case PAPER: return WIN;
+                    case SCISSORS: return DRAW;
+                    case ROCK: return LOSE;
+                }
+            default: return LOSE;
+
+        }
+
+
     }
 
 

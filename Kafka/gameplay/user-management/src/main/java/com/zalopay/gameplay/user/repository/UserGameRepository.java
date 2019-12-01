@@ -1,13 +1,17 @@
 package com.zalopay.gameplay.user.repository;
 
-import com.zalopay.gameplay.user.entity.Game;
 import com.zalopay.gameplay.user.entity.User;
 import com.zalopay.gameplay.user.entity.UserGame;
-import com.zalopay.gameplay.user.entity.UserGameId;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+public interface UserGameRepository extends JpaRepository<UserGame, Long> {
+    UserGame findUserGameByUserAndGameType(User user, String gameType);
 
-public interface UserGameRepository extends JpaRepository<UserGame, UserGameId> {
-    List<UserGame> findByUserAndGame(User user, Game game);
+    @Modifying
+    @Query(value = "update user_game u set u.total_game = u.total_game + 1 where " +
+            "u.user_id = :userId and u.game_type = :gameType", nativeQuery = true)
+    void updateTotalGame(@Param("userId") long userId, @Param("gameType") String gameType);
 }
