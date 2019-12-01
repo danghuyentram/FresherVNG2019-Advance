@@ -22,6 +22,7 @@ public class ConsumerService {
 
     @KafkaListener(topics = "demo", groupId = "consumerGroup2")
     public void consume2(String message) throws JsonProcessingException {
+
         ObjectMapper objectMapper = new ObjectMapper();
         User user = objectMapper.readValue(message, User.class);
         logger.info(String.format("#### -> Consumed message of string %s-> %s","consumer2",user));
