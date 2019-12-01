@@ -16,7 +16,7 @@ auto.commit.interval.ms
 Vậy default cứ 5s 1 consumer sẽ commit offset của nó cho Kafka hoặc bất kì khi nào data được fetch từ topic thì nó cũng commit offset cuối cùng.
 
 Tuy nhiên 1 số trường hợp nó sẽ không diễn ra như vậy:
-Vd: Khi consumer đang process 1 message ở offset thứ 100 và trong khi xử lí message đó, consumer fetch thêm 1 vài data, offset được commit và consumer bị crash. Sau đó consumer restart lại, sẽ có 2 trường hợp xảy ra:
+Vd: 
 
 - Consumer khi đang chưa process xong message thứ 10 thì bị crash 
 ![](media/cap3.png)
